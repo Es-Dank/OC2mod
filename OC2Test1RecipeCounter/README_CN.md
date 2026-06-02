@@ -39,3 +39,13 @@ powershell -ExecutionPolicy Bypass -File .\build.ps1 -GameDir "E:\SteamLibrary\s
 Loading [测试1记菜器 2.8.0]
 测试1记菜器 v2.8.0 loaded.
 ```
+
+## GitHub archive
+
+本目录里的 `OC2Test1RecipeCounter_v2_8_source.zip.b64` 是源码 ZIP 的 Base64 文本。
+
+还原命令：
+
+```powershell
+certutil -decode OC2Test1RecipeCounter_v2_8_source.zip.b64 OC2Test1RecipeCounter_v2_8_source.zip
+```

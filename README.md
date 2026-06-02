@@ -1,84 +1,107 @@
-# OC2 Beach Menu Predictor
+# OC2 Mod Tools
 
-**OC2 Beach Menu Predictor** is an experimental BepInEx mod for *Overcooked! 2*. It was designed for the Beach Special / Beach 3-4 style level and displays a compact rolling preview of upcoming beach orders.
+This repository contains experimental BepInEx / Harmony mods for *Overcooked! 2*.
 
-This repository contains the source code and a PowerShell build script. It is mainly intended for private testing, casual practice, and learning how *Overcooked! 2* BepInEx/Harmony mods work.
+These tools are intended for private testing, custom lobbies, practice, and learning. They are unofficial fan-made mods and are not affiliated with Team17, Ghost Town Games, or the official *Overcooked! 2* developers.
 
-## Features
+## Projects
 
-- Shows a compact in-game overlay with upcoming beach-level orders.
-- Keeps a rolling preview queue, so newly generated orders replace orders that have already appeared.
-- Includes a force/lock queue mode for private testing, where the displayed queue is intended to match the generated order queue.
-- Uses a cleaner UI overlay to reduce screen obstruction.
-- Designed for BepInEx + Harmony modding environments.
+### OC2 Beach Menu Predictor
 
-## Supported Level
+A beach-level menu predictor originally built around the Beach Special / Beach 3-4 style level.
 
-This project was built around the Beach Special / Beach 3-4 style level.
+Features include:
 
-It is not a universal menu predictor. Other normal levels, DLC levels, custom maps, arcade tools, or heavily modified order-generation systems may require separate adaptation.
+- compact in-game overlay;
+- rolling upcoming-order preview;
+- force/lock queue mode for private testing;
+- BepInEx + Harmony based patching.
 
-## Installation
+This mod is experimental and not a universal predictor for every level.
 
-1. Install BepInEx for *Overcooked! 2*.
-2. Build the project with the included `build.ps1` script.
-3. Copy the generated DLL into:
+### Test 1 Recipe Counter
+
+Path:
+
+```text
+OC2Test1RecipeCounter/
+```
+
+A recipe counter designed specifically for the custom DIYLevel test map:
+
+```text
+s_test_level / Test 1
+```
+
+Main behaviour:
+
+- counts generated orders by menu name;
+- supports four-player mode and two-player mode;
+- two-player slot 1 = four-player slot 1 + four-player slot 4;
+- two-player slot 2 = four-player slot 2 + four-player slot 3;
+- if both four-player and two-player display modes are disabled, entering Test 1 does not show the overlay;
+- displays only the selected position menu list in-game.
+
+See `OC2Test1RecipeCounter/README_CN.md` for build and usage details.
+
+### Player Slot Mapper
+
+Path:
+
+```text
+OC2PlayerSlotMapper/
+```
+
+A pre-level player-position mapper. It does not perform real-time in-level swapping.
+
+Main behaviour:
+
+- lets the host assign which colour/player should occupy slots 1–4;
+- applies only when entering a level;
+- changing settings requires exiting the current level and entering again;
+- default mapping:
+  - slot 1 = blue;
+  - slot 2 = red;
+  - slot 3 = green;
+  - slot 4 = yellow.
+
+See `OC2PlayerSlotMapper/README_CN.md` for build and usage details.
+
+## General installation
+
+Each project includes its own `build.ps1`.
+
+Example:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\build.ps1 -GameDir "E:\SteamLibrary\steamapps\common\Overcooked! 2" -Install
+```
+
+The generated DLL is copied to:
 
 ```text
 Overcooked! 2/BepInEx/plugins/
 ```
 
-Example build command:
+## Compatibility notes
 
-```powershell
-powershell -ExecutionPolicy Bypass -File .\build.ps1 -GameDir "D:\SteamLibrary\steamapps\common\Overcooked! 2" -Install
-```
-
-## Controls
-
-Default controls:
-
-```text
-2 = Show / hide the overlay
-3 = Rebuild the prediction queue
-4 = Clear the current queue
-```
-
-The exact keys can be changed through the BepInEx configuration file after the first launch.
-
-## Compatibility Notes
-
-This mod may conflict with other mods that modify:
+These mods may conflict with other mods that modify:
 
 - order generation;
 - recipe weights;
+- player/chef assignment;
 - level loading;
 - arcade lobby behaviour;
 - custom level systems.
 
-If the preview queue does not match the actual orders, test the mod in a clean BepInEx setup first.
-
-## Intended Use
-
-This mod is intended for:
-
-- private lobbies;
-- casual practice;
-- order-generation testing;
-- personal modding experiments.
-
-It is not intended for public matchmaking, competitive scoring, leaderboard submissions, or any situation where other players have not agreed to use gameplay-altering mods.
+Test one mod at a time in a clean BepInEx setup if behaviour is inconsistent.
 
 ## Disclaimer
 
-This is an unofficial fan-made mod. It is not affiliated with, endorsed by, sponsored by, or approved by Team17, Ghost Town Games, or any official *Overcooked! 2* developer, publisher, or rights holder.
+These are unofficial fan-made mods. They are not affiliated with, endorsed by, sponsored by, or approved by Team17, Ghost Town Games, or any official *Overcooked! 2* developer, publisher, or rights holder.
 
-Use this mod at your own risk. The author is not responsible for crashes, corrupted saves, multiplayer desynchronisation, broken lobbies, lost scores, account issues, or any other damage or inconvenience caused by installing or using this mod.
+Use these mods at your own risk. The author is not responsible for crashes, corrupted saves, multiplayer desynchronisation, broken lobbies, lost scores, account issues, or any other damage or inconvenience caused by installing or using them.
 
-This mod may alter gameplay behaviour. Do not use it in public lobbies, competitive contexts, leaderboard runs, or with players who have not consented to modded gameplay.
+Do not use gameplay-altering mods in public lobbies, competitive contexts, leaderboard runs, or with players who have not consented to modded gameplay.
 
-All trademarks, game names, assets, and related intellectual property belong to their respective owners. This project does not include or redistribute official game assets.
-
-## Status
-
-Experimental. Built for private testing and may require per-level adaptation.
+All trademarks, game names, assets, and related intellectual property belong to their respective owners. This repository does not include or redistribute official game assets.
